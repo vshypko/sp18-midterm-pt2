@@ -26,7 +26,7 @@ class App extends Component {
   }
 
   componentWillMount() {
-    
+
     // Get network provider and web3 instance.
     // See utils/getWeb3 for more info.
     getWeb3
@@ -53,12 +53,6 @@ class App extends Component {
     }).then(() => this.watchLogs())
   }
 
-
-  /// TODO: Finish implementing the watchLogs() function. This should watch for all the events
-  /// that we define in lines 61-64. Most of this is implemented. There are just a few pieces 
-  /// for you to fill in. This should give you practice working with the state object in 
-  /// reactJs.
-
   watchLogs() {
     var depositFundsEvent = this.state.multiSigContract.DepositFunds();
     var transactionCreatedEvent = this.state.multiSigContract.TransactionCreated();
@@ -67,16 +61,12 @@ class App extends Component {
 
     /// save reference to global component obj for later user
     var that = this;
-    
+
     depositFundsEvent.watch(function(error, result) {
       if (error) {
         console.log(error);
       } else {
-        /// YOUR CODE HERE -- what do we need to do if we want to log a component?
-        /// 'result.event' will give you the event itself, so try adding that to the 
-        /// list of events we are tracking in the state object. REMEMBER TO USE 'that'
-        /// instead of 'this'. You can use 'that.state.item' to access 'item' from the state
-        /// and 'that.setState({item: value})' to reset the value of 'item' to 'value'
+        that.setState({events: that.state.events.concat([result.event])});
       }
     })
 
@@ -84,7 +74,7 @@ class App extends Component {
       if (error) {
         console.log(error);
       } else {
-        /// YOUR CODE HERE -- same instructions as above
+        that.setState({events: that.state.events.concat([result.event])});
       }
     })
 
@@ -92,7 +82,7 @@ class App extends Component {
       if (error) {
         console.log(error);
       } else {
-        /// YOUR CODE HERE -- same instructions as above
+        that.setState({events: that.state.events.concat([result.event])});
       }
     })
 
@@ -100,17 +90,15 @@ class App extends Component {
       if (error) {
         console.log(error);
       } else {
-        /// YOUR CODE HERE -- same instructions as above
+        that.setState({events: that.state.events.concat([result.event])});
       }
     })
   }
 
-  /// TODO: Implement the sendEther function, which is called when we click the 
-  /// "Send Ether" button in the browser. Use the web3 object from this react component's
-  /// state (i.e. 'this.state.web3.....'). You'll want to use the 'sendTransaction'
-  /// function, which is documented here -- https://github.com/ethereum/wiki/wiki/JavaScript-API#web3ethsendtransaction
   sendEther() {
-    /// YOUR CODE HERE. This should only be 1 line.
+    this.state.web3.eth.sendTransaction({from: 0x0,
+      value: 2,
+      to: this.state.multiSigContract});;
   }
 
   render() {

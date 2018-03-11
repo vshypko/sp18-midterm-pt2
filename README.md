@@ -1,5 +1,21 @@
 # Midterm Part 2, Frontend  Code
 
+###### Project Partner 1
+
+Name: Vitali Shypko
+
+SID: 3032620099
+
+Email: vshypko@berkeley.edu
+
+###### Project Partner 2
+
+Name: Yahor Yuzefovich
+
+SID: 3032556983
+
+Email: yuzefovich@berkeley.edu
+
 We've already setup the infastructure for you. You just need to implement a couple of methods that will be used to 1) log events that we will generate by interacting with the truffle console, and 2) send ether to our multi-sig wallet contract using our local web3. 
 
 **Before doing anything type 'npm install'** from the command line. This will grab all the dependencies we need to run our react app. It might take a minute or so to run. 
